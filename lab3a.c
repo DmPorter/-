@@ -5,12 +5,12 @@
 
 char *getstr() {
     char *ptr = (char *) malloc(1);
-    char buf[100001];
+    char buf[81];
     int n, len = 0;
     *ptr = '\0';
 
     do {
-        n = scanf("%100000[^\n]", buf);
+        n = scanf("%80[^\n]", buf);
         if (n < 0) {
             free(ptr);
             ptr = NULL;
@@ -115,8 +115,6 @@ int main(){
         printf("Your line: '%s'\n", newbuf);
         free(buf);
         free(newbuf);
-        newbuf = NULL;
-        buf = NULL;
         printf("\n");
 
     }while (10);
