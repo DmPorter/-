@@ -57,43 +57,24 @@ void printList(stringItem *char_begin){
     printf("\n");
 };
 
-
-int length(stringItem *ptr){
-    int n = 0;
-    while (ptr != NULL){
-        n++;
-        ptr = ptr->next;
-    }
-    return n;
-}
-
 struct stringItem* obr(stringItem *st){
     struct stringItem  *tmp;
-    struct stringItem  *head = malloc(sizeof(stringItem)), *head2 = malloc(sizeof(stringItem));
-    int i = 0;
-
+    struct stringItem  *head = malloc(sizeof(stringItem));
 
     if (st != NULL)
-        while((st != NULL) & (st->c == ' ')) {
+        while((st != NULL) & (st->c < '0') || (st->c > '9')) {
             st = st->next;
             if (st == NULL)
-            {
-                printf("Error!\n");
                 return 0;
-            }
-    }
-    else
-    {
-        printf("Error!\n");
-        return 0;
-    }
+        }
+    else return 0;
 
     head->c = st->c;
     head->next = NULL;
     st = st->next;
-
+    
     while(st != NULL) {
-        while ((st != NULL) & (st->c != ' ')) {
+        while ((st != NULL) & (st->c >= '0') & (st->c <= '9')) {
             tmp = (stringItem *) malloc(sizeof(stringItem));
             tmp->c = st->c;
             st = st->next;
@@ -103,20 +84,17 @@ struct stringItem* obr(stringItem *st){
             if (st == NULL )
                 return head;
         }
-
-        if (st == NULL )
-            return head;
-        while((st != NULL) & (st->c == ' ') ){
+        while((st != NULL) & (st->c < '0') || (st->c > '9') ){
             st = st->next;
             if (st == NULL )
                 return head;
         }
-            tmp = (stringItem *) malloc(sizeof(stringItem));
-            tmp->c = ' ';
-            tmp->next = head;
-            head = tmp;
+        
+        tmp = (stringItem *) malloc(sizeof(stringItem));
+        tmp->c = ' ';
+        tmp->next = head;
+        head = tmp;
     }
-
     return head;
 }
 
@@ -124,8 +102,8 @@ int main(){
     struct stringItem *st;
     do{
         getList(&st);
-        printList(obr(st));
+        st = obr(st);
+        printList(st);
         deleteList(st);
     } while(1);
-    return 0;
 }
