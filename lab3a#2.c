@@ -38,11 +38,7 @@ char *skipWord(char *buf){
         if ((*buf != '1') && (*buf != '3') && (*buf != '5') && (*buf != '7') && (*buf != '9') && (*buf != '0') && (*buf != '2') && (*buf != '4') && (*buf != '6') && (*buf != '8') && (*buf != ' ')) {
             printf("Error!\n");
             return 0;
-        } else{
-            *buf++;
-        }
-
-
+        } else *buf++;
     }
     return 1;
 }
@@ -102,8 +98,6 @@ int main(){
             }
         }
 
-
-
         newbuf1 =  (char *) malloc(strlen(buf));
         newbuf2 =  (char *) malloc(strlen(buf));
 
@@ -114,7 +108,6 @@ int main(){
 
         free(buf);
         free(newbuf1);
-        printf("\n");
-
+        free(newbuf2);
     }while (10);
 }
