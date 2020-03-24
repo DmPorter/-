@@ -85,16 +85,24 @@ int main(){
         buf=getstr();
         buf=skipSpace(buf);
 
+        while (*buf == NULL){
+            printf("Please re-enter line\n");
+            buf=getstr();
+            buf = skipSpace(buf);
+        }
+
         while(skipWord(buf) == 0){
             printf("Please re-enter line\n");
             buf=getstr();
+            buf=skipSpace(buf);
+            while (*buf == NULL){
+                printf("Please re-enter line\n");
+                buf=getstr();
+                buf = skipSpace(buf);
+            }
         }
 
 
-        if (*buf == NULL){
-            printf("Error!\n");
-            return  0;
-        }
 
         newbuf1 =  (char *) malloc(strlen(buf));
         newbuf2 =  (char *) malloc(strlen(buf));
