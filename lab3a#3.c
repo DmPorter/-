@@ -48,7 +48,6 @@ int endword(char* buf){
     while (*(buf) != ' '){
         *(buf++);
         l++;
-        printf("%c\n", *buf);
     }
     *(buf--);
     int ew = *(buf);
